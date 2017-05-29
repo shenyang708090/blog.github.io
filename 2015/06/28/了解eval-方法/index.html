@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>了解eval()方法 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="定义和用法eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。 不推荐使用eval的原因 eval 太神秘了，难以理解，以至于很多人用错。所以不推荐使用。     eval不容易调试。用chromeDev等调试工具无法打断点调试，所以麻烦的东西也是不推荐使用的…3.说到性能问题，在旧的浏览器中如果你使用了eval，性能会下降10倍。在现代浏览器中有两种编译模式：fast">
+<meta property="og:type" content="article">
+<meta property="og:title" content="了解eval()方法">
+<meta property="og:url" content="http://yoursite.com/2015/06/28/了解eval-方法/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="定义和用法eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。 不推荐使用eval的原因 eval 太神秘了，难以理解，以至于很多人用错。所以不推荐使用。     eval不容易调试。用chromeDev等调试工具无法打断点调试，所以麻烦的东西也是不推荐使用的…3.说到性能问题，在旧的浏览器中如果你使用了eval，性能会下降10倍。在现代浏览器中有两种编译模式：fast">
+<meta property="og:updated_time" content="2017-05-29T06:53:04.161Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="了解eval()方法">
+<meta name="twitter:description" content="定义和用法eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。 不推荐使用eval的原因 eval 太神秘了，难以理解，以至于很多人用错。所以不推荐使用。     eval不容易调试。用chromeDev等调试工具无法打断点调试，所以麻烦的东西也是不推荐使用的…3.说到性能问题，在旧的浏览器中如果你使用了eval，性能会下降10倍。在现代浏览器中有两种编译模式：fast">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-了解eval-方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/06/28/了解eval-方法/" class="article-date">
+  <time datetime="2015-06-28T14:12:41.000Z" itemprop="datePublished">2015-06-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端-JS/">前端-JS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      了解eval()方法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="定义和用法"><a href="#定义和用法" class="headerlink" title="定义和用法"></a>定义和用法</h1><p>eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。</p>
+<h2 id="不推荐使用eval的原因"><a href="#不推荐使用eval的原因" class="headerlink" title="不推荐使用eval的原因"></a>不推荐使用eval的原因</h2><ol>
+<li>eval 太神秘了，难以理解，以至于很多人用错。所以不推荐使用。    </li>
+<li>eval不容易调试。用chromeDev等调试工具无法打断点调试，所以麻烦的东西也是不推荐使用的…<br>3.说到性能问题，在旧的浏览器中如果你使用了eval，性能会下降10倍。在现代浏览器中有两种编译模式：fast path和slow path。fast path是编译那些稳定和可预测（stable and predictable）的代码。而明显的，eval不可预测，所以将会使用slow path ，所以会慢。还有一个是，在使用类似于Closure Compiler等压缩（混淆）代码时，使用eval会报错。（又慢又报错，我还推荐吗？）</li>
+<li>关于安全性，我们经常听到eval是魔鬼，他会引起XSS攻击，实际上，如果我们对信息源有足够的把握时，eval并不会引起很大的安全问题。而且不光是eval，其他方式也可能引起安全问题。比如：   莫名其妙给你注入一个script src=””标签，或者一段来历不明的JSON-P请求，再或者就是Ajax请求中的eval代码…   所以啊，只要你的信息源不安全，你的代码就不安全。不单单是因为eval引起的。你用eval的时候会在意XSS的问题，你越在意就越出问题，出的多了，eval就成噩梦了。</li>
+<li>效率问题是程序逻辑问题。对于一些有执行字符串代码需求的程序中，不用eval而用其他方式模拟反而会带来更大的开销。</li>
+</ol>
+<h2 id="特殊用法举例"><a href="#特殊用法举例" class="headerlink" title="特殊用法举例"></a>特殊用法举例</h2><p><code>var arr = [11,224,67,37,99];
+consoloe.log(eval(arr.join(&quot;+&quot;)));</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/06/28/了解eval-方法/" data-id="cj39slw1w00021gukzzlkjiwy" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/06/28/eval-的了解/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          了解eval()方法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/06/24/搭建Blog/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">hexo+github搭建Blog</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端-JS/">前端-JS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/05/29/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2015/06/28/eval-的了解/">了解eval()方法</a>
+          </li>
+        
+          <li>
+            <a href="/2015/06/28/了解eval-方法/">了解eval()方法</a>
+          </li>
+        
+          <li>
+            <a href="/2015/06/24/搭建Blog/">hexo+github搭建Blog</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
