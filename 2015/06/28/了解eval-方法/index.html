@@ -87,16 +87,16 @@
 
 
 
-<meta name="description" content="定义和用法eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。 不推荐使用eval的原因 eval 太神秘了，难以理解，以至于很多人用错。所以不推荐使用。     eval不容易调试。用chromeDev等调试工具无法打断点调试，所以麻烦的东西也是不推荐使用的…3.说到性能问题，在旧的浏览器中如果你使用了eval，性能会下降10倍。在现代浏览器中有两种编译模式：fast">
+<meta name="description" content="定义和用法eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。 不推荐使用eval的原因 eval 太神秘了，难以理解，以至于很多人用错。所以不推荐使用。     eval不容易调试。用chromeDev等调试工具无法打断点调试，所以麻烦的东西也是不推荐使用的… 说到性能问题，在旧的浏览器中如果你使用了eval，性能会下降10倍。在现代浏览器中有两种编译模式：fast">
 <meta property="og:type" content="article">
 <meta property="og:title" content="了解eval()方法">
 <meta property="og:url" content="http://yoursite.com/2015/06/28/了解eval-方法/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="定义和用法eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。 不推荐使用eval的原因 eval 太神秘了，难以理解，以至于很多人用错。所以不推荐使用。     eval不容易调试。用chromeDev等调试工具无法打断点调试，所以麻烦的东西也是不推荐使用的…3.说到性能问题，在旧的浏览器中如果你使用了eval，性能会下降10倍。在现代浏览器中有两种编译模式：fast">
-<meta property="og:updated_time" content="2017-05-29T06:53:04.161Z">
+<meta property="og:description" content="定义和用法eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。 不推荐使用eval的原因 eval 太神秘了，难以理解，以至于很多人用错。所以不推荐使用。     eval不容易调试。用chromeDev等调试工具无法打断点调试，所以麻烦的东西也是不推荐使用的… 说到性能问题，在旧的浏览器中如果你使用了eval，性能会下降10倍。在现代浏览器中有两种编译模式：fast">
+<meta property="og:updated_time" content="2017-05-31T13:05:02.248Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="了解eval()方法">
-<meta name="twitter:description" content="定义和用法eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。 不推荐使用eval的原因 eval 太神秘了，难以理解，以至于很多人用错。所以不推荐使用。     eval不容易调试。用chromeDev等调试工具无法打断点调试，所以麻烦的东西也是不推荐使用的…3.说到性能问题，在旧的浏览器中如果你使用了eval，性能会下降10倍。在现代浏览器中有两种编译模式：fast">
+<meta name="twitter:description" content="定义和用法eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。 不推荐使用eval的原因 eval 太神秘了，难以理解，以至于很多人用错。所以不推荐使用。     eval不容易调试。用chromeDev等调试工具无法打断点调试，所以麻烦的东西也是不推荐使用的… 说到性能问题，在旧的浏览器中如果你使用了eval，性能会下降10倍。在现代浏览器中有两种编译模式：fast">
 
 
 
@@ -346,7 +346,8 @@
         <h1 id="定义和用法"><a href="#定义和用法" class="headerlink" title="定义和用法"></a>定义和用法</h1><p>eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。</p>
 <h2 id="不推荐使用eval的原因"><a href="#不推荐使用eval的原因" class="headerlink" title="不推荐使用eval的原因"></a>不推荐使用eval的原因</h2><ol>
 <li>eval 太神秘了，难以理解，以至于很多人用错。所以不推荐使用。    </li>
-<li>eval不容易调试。用chromeDev等调试工具无法打断点调试，所以麻烦的东西也是不推荐使用的…<br>3.说到性能问题，在旧的浏览器中如果你使用了eval，性能会下降10倍。在现代浏览器中有两种编译模式：fast path和slow path。fast path是编译那些稳定和可预测（stable and predictable）的代码。而明显的，eval不可预测，所以将会使用slow path ，所以会慢。还有一个是，在使用类似于Closure Compiler等压缩（混淆）代码时，使用eval会报错。（又慢又报错，我还推荐吗？）</li>
+<li>eval不容易调试。用chromeDev等调试工具无法打断点调试，所以麻烦的东西也是不推荐使用的…</li>
+<li>说到性能问题，在旧的浏览器中如果你使用了eval，性能会下降10倍。在现代浏览器中有两种编译模式：fast path和slow path。fast path是编译那些稳定和可预测（stable and predictable）的代码。而明显的，eval不可预测，所以将会使用slow path ，所以会慢。还有一个是，在使用类似于Closure Compiler等压缩（混淆）代码时，使用eval会报错。（又慢又报错，我还推荐吗？）</li>
 <li>关于安全性，我们经常听到eval是魔鬼，他会引起XSS攻击，实际上，如果我们对信息源有足够的把握时，eval并不会引起很大的安全问题。而且不光是eval，其他方式也可能引起安全问题。比如：   莫名其妙给你注入一个script src=””标签，或者一段来历不明的JSON-P请求，再或者就是Ajax请求中的eval代码…   所以啊，只要你的信息源不安全，你的代码就不安全。不单单是因为eval引起的。你用eval的时候会在意XSS的问题，你越在意就越出问题，出的多了，eval就成噩梦了。</li>
 <li>效率问题是程序逻辑问题。对于一些有执行字符串代码需求的程序中，不用eval而用其他方式模拟反而会带来更大的开销。</li>
 </ol>
@@ -397,6 +398,10 @@ consoloe.log(eval(arr.join(&quot;+&quot;)));</code></p>
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/31/JavaScript-Object-prototype-toString方法的原理/" rel="prev" title="JavaScript:Object.prototype.toString方法的原理">
+                JavaScript:Object.prototype.toString方法的原理 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -468,7 +473,7 @@ consoloe.log(eval(arr.join(&quot;+&quot;)));</code></p>
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
