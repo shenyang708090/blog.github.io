@@ -88,11 +88,11 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="沈阳的博客">
 <meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="沈阳的博客">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="沈阳的博客">
 
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title> Hexo </title>
+  <title> 沈阳的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -164,7 +164,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">沈阳的博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -250,13 +250,13 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/31/JavaScript-Object-prototype-toString方法的原理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="沈阳">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="沈阳的博客">
     </span>
 
     
@@ -413,16 +413,162 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/06/28/了解eval-方法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/06/30/判断对象类型的四种方法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="沈阳">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="沈阳的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/06/30/判断对象类型的四种方法/" itemprop="url">
+                  判断对象类型的四种方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-06-30T08:59:42+08:00">
+                2015-06-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端-JS/" itemprop="url" rel="index">
+                    <span itemprop="name">前端-JS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="typeof关键字"><a href="#typeof关键字" class="headerlink" title="typeof关键字"></a>typeof关键字</h1><p>当需要判断变量是否是number, string, boolean, function, undefined, json类型时，可以使用typeof进行判断。其他变量是判断不出类型的，包括null。<br>还有，typeof是区分不出array和json类型的。因为使用typeof这个变量时，array和json类型输出的都是object。</p>
+<h1 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h1><p>num, str和bool直接量无法判断类型，必须用构造函数创建出对象才能判断</p>
+<h1 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h1><p>除了undefined和null，其他类型的变量均能使用constructor判断出类型。<br>不过使用constructor也不是保险的，因为constructor属性是可以被修改的，会导致检测出的结果不正确。由于不同框架之间的对象，他们的原型是不同的，所以在一个框架中去检测两一个框架中的对象会失败。</p>
+<h1 id="Object-prototype-toString-call"><a href="#Object-prototype-toString-call" class="headerlink" title="Object.prototype.toString.call();"></a>Object.prototype.toString.call();</h1><p>目前JS中最为精确的检测对象类型方法</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/06/28/了解eval-方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="沈阳">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="沈阳的博客">
     </span>
 
     
@@ -568,13 +714,13 @@ consoloe.log(eval(arr.join(&quot;+&quot;)));</code></p>
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/06/24/搭建Blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="沈阳">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="沈阳的博客">
     </span>
 
     
@@ -749,8 +895,8 @@ consoloe.log(eval(arr.join(&quot;+&quot;)));</code></p>
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
-               alt="John Doe" />
-          <p class="site-author-name" itemprop="name">John Doe</p>
+               alt="沈阳" />
+          <p class="site-author-name" itemprop="name">沈阳</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
           
@@ -760,7 +906,7 @@ consoloe.log(eval(arr.join(&quot;+&quot;)));</code></p>
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -819,7 +965,7 @@ consoloe.log(eval(arr.join(&quot;+&quot;)));</code></p>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">沈阳</span>
 </div>
 
 

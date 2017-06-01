@@ -87,16 +87,16 @@
 
 
 
-<meta name="description" content="定义和用法eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。 不推荐使用eval的原因 eval 太神秘了，难以理解，以至于很多人用错。所以不推荐使用。     eval不容易调试。用chromeDev等调试工具无法打断点调试，所以麻烦的东西也是不推荐使用的… 说到性能问题，在旧的浏览器中如果你使用了eval，性能会下降10倍。在现代浏览器中有两种编译模式：fast">
+<meta name="description" content="typeof关键字当需要判断变量是否是number, string, boolean, function, undefined, json类型时，可以使用typeof进行判断。其他变量是判断不出类型的，包括null。还有，typeof是区分不出array和json类型的。因为使用typeof这个变量时，array和json类型输出的都是object。 instanceofnum, str和bool">
 <meta property="og:type" content="article">
-<meta property="og:title" content="了解eval()方法">
-<meta property="og:url" content="http://yoursite.com/2015/06/28/了解eval-方法/index.html">
+<meta property="og:title" content="判断对象类型的四种方法">
+<meta property="og:url" content="http://yoursite.com/2015/06/30/判断对象类型的四种方法/index.html">
 <meta property="og:site_name" content="沈阳的博客">
-<meta property="og:description" content="定义和用法eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。 不推荐使用eval的原因 eval 太神秘了，难以理解，以至于很多人用错。所以不推荐使用。     eval不容易调试。用chromeDev等调试工具无法打断点调试，所以麻烦的东西也是不推荐使用的… 说到性能问题，在旧的浏览器中如果你使用了eval，性能会下降10倍。在现代浏览器中有两种编译模式：fast">
-<meta property="og:updated_time" content="2017-05-31T13:05:02.248Z">
+<meta property="og:description" content="typeof关键字当需要判断变量是否是number, string, boolean, function, undefined, json类型时，可以使用typeof进行判断。其他变量是判断不出类型的，包括null。还有，typeof是区分不出array和json类型的。因为使用typeof这个变量时，array和json类型输出的都是object。 instanceofnum, str和bool">
+<meta property="og:updated_time" content="2017-06-01T01:27:06.988Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="了解eval()方法">
-<meta name="twitter:description" content="定义和用法eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。 不推荐使用eval的原因 eval 太神秘了，难以理解，以至于很多人用错。所以不推荐使用。     eval不容易调试。用chromeDev等调试工具无法打断点调试，所以麻烦的东西也是不推荐使用的… 说到性能问题，在旧的浏览器中如果你使用了eval，性能会下降10倍。在现代浏览器中有两种编译模式：fast">
+<meta name="twitter:title" content="判断对象类型的四种方法">
+<meta name="twitter:description" content="typeof关键字当需要判断变量是否是number, string, boolean, function, undefined, json类型时，可以使用typeof进行判断。其他变量是判断不出类型的，包括null。还有，typeof是区分不出array和json类型的。因为使用typeof这个变量时，array和json类型输出的都是object。 instanceofnum, str和bool">
 
 
 
@@ -124,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2015/06/28/了解eval-方法/"/>
+  <link rel="canonical" href="http://yoursite.com/2015/06/30/判断对象类型的四种方法/"/>
 
 
 
 
 
-  <title> 了解eval()方法 | 沈阳的博客 </title>
+  <title> 判断对象类型的四种方法 | 沈阳的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -249,7 +249,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/06/28/了解eval-方法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/06/30/判断对象类型的四种方法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="沈阳">
@@ -270,7 +270,7 @@
             
             
               
-                了解eval()方法
+                判断对象类型的四种方法
               
             
           </h1>
@@ -285,8 +285,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-06-28T22:12:41+08:00">
-                2015-06-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-06-30T08:59:42+08:00">
+                2015-06-30
               </time>
             
 
@@ -343,16 +343,10 @@
       
 
       
-        <h1 id="定义和用法"><a href="#定义和用法" class="headerlink" title="定义和用法"></a>定义和用法</h1><p>eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。</p>
-<h2 id="不推荐使用eval的原因"><a href="#不推荐使用eval的原因" class="headerlink" title="不推荐使用eval的原因"></a>不推荐使用eval的原因</h2><ol>
-<li>eval 太神秘了，难以理解，以至于很多人用错。所以不推荐使用。    </li>
-<li>eval不容易调试。用chromeDev等调试工具无法打断点调试，所以麻烦的东西也是不推荐使用的…</li>
-<li>说到性能问题，在旧的浏览器中如果你使用了eval，性能会下降10倍。在现代浏览器中有两种编译模式：fast path和slow path。fast path是编译那些稳定和可预测（stable and predictable）的代码。而明显的，eval不可预测，所以将会使用slow path ，所以会慢。还有一个是，在使用类似于Closure Compiler等压缩（混淆）代码时，使用eval会报错。（又慢又报错，我还推荐吗？）</li>
-<li>关于安全性，我们经常听到eval是魔鬼，他会引起XSS攻击，实际上，如果我们对信息源有足够的把握时，eval并不会引起很大的安全问题。而且不光是eval，其他方式也可能引起安全问题。比如：   莫名其妙给你注入一个script src=””标签，或者一段来历不明的JSON-P请求，再或者就是Ajax请求中的eval代码…   所以啊，只要你的信息源不安全，你的代码就不安全。不单单是因为eval引起的。你用eval的时候会在意XSS的问题，你越在意就越出问题，出的多了，eval就成噩梦了。</li>
-<li>效率问题是程序逻辑问题。对于一些有执行字符串代码需求的程序中，不用eval而用其他方式模拟反而会带来更大的开销。</li>
-</ol>
-<h2 id="特殊用法举例"><a href="#特殊用法举例" class="headerlink" title="特殊用法举例"></a>特殊用法举例</h2><p><code>var arr = [11,224,67,37,99];
-consoloe.log(eval(arr.join(&quot;+&quot;)));</code></p>
+        <h1 id="typeof关键字"><a href="#typeof关键字" class="headerlink" title="typeof关键字"></a>typeof关键字</h1><p>当需要判断变量是否是number, string, boolean, function, undefined, json类型时，可以使用typeof进行判断。其他变量是判断不出类型的，包括null。<br>还有，typeof是区分不出array和json类型的。因为使用typeof这个变量时，array和json类型输出的都是object。</p>
+<h1 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h1><p>num, str和bool直接量无法判断类型，必须用构造函数创建出对象才能判断</p>
+<h1 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h1><p>除了undefined和null，其他类型的变量均能使用constructor判断出类型。<br>不过使用constructor也不是保险的，因为constructor属性是可以被修改的，会导致检测出的结果不正确。由于不同框架之间的对象，他们的原型是不同的，所以在一个框架中去检测两一个框架中的对象会失败。</p>
+<h1 id="Object-prototype-toString-call"><a href="#Object-prototype-toString-call" class="headerlink" title="Object.prototype.toString.call();"></a>Object.prototype.toString.call();</h1><p>目前JS中最为精确的检测对象类型方法</p>
 
       
     </div>
@@ -389,8 +383,8 @@ consoloe.log(eval(arr.join(&quot;+&quot;)));</code></p>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/06/24/搭建Blog/" rel="next" title="hexo+github搭建Blog">
-                <i class="fa fa-chevron-left"></i> hexo+github搭建Blog
+              <a href="/2015/06/28/了解eval-方法/" rel="next" title="了解eval()方法">
+                <i class="fa fa-chevron-left"></i> 了解eval()方法
               </a>
             
           </div>
@@ -399,8 +393,8 @@ consoloe.log(eval(arr.join(&quot;+&quot;)));</code></p>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/06/30/判断对象类型的四种方法/" rel="prev" title="判断对象类型的四种方法">
-                判断对象类型的四种方法 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/31/JavaScript-Object-prototype-toString方法的原理/" rel="prev" title="JavaScript:Object.prototype.toString方法的原理">
+                JavaScript:Object.prototype.toString方法的原理 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -521,7 +515,7 @@ consoloe.log(eval(arr.join(&quot;+&quot;)));</code></p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定义和用法"><span class="nav-number">1.</span> <span class="nav-text">定义和用法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#不推荐使用eval的原因"><span class="nav-number">1.1.</span> <span class="nav-text">不推荐使用eval的原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊用法举例"><span class="nav-number">1.2.</span> <span class="nav-text">特殊用法举例</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#typeof关键字"><span class="nav-number">1.</span> <span class="nav-text">typeof关键字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#instanceof"><span class="nav-number">2.</span> <span class="nav-text">instanceof</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#constructor-NaN"><span class="nav-number">3.</span> <span class="nav-text">constructor</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Object-prototype-toString-call"><span class="nav-number">4.</span> <span class="nav-text">Object.prototype.toString.call();</span></a></li></ol></div>
             
 
           </div>
