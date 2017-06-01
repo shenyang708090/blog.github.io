@@ -87,16 +87,16 @@
 
 
 
-<meta name="description" content="typeof关键字当需要判断变量是否是number, string, boolean, function, undefined, json类型时，可以使用typeof进行判断。其他变量是判断不出类型的，包括null。还有，typeof是区分不出array和json类型的。因为使用typeof这个变量时，array和json类型输出的都是object。 instanceofnum, str和bool">
+<meta name="description" content="在JavaScript中,想要判断某个对象值属于哪种内置类型,最靠谱的做法就是通过Object.prototype.toString方法.12var arr = [];console.log(Object.prototype.toString.call(arr))  //&amp;quot;[object Array]&amp;quot; 在ES3中,Object.prototype.toString方法的规范如">
 <meta property="og:type" content="article">
-<meta property="og:title" content="判断对象类型的四种方法">
-<meta property="og:url" content="http://yoursite.com/2015/06/30/判断对象类型的四种方法/index.html">
+<meta property="og:title" content="JavaScript:Object.prototype.toString方法的原理">
+<meta property="og:url" content="http://yoursite.com/2015/05/31/JavaScript-Object-prototype-toString方法的原理/index.html">
 <meta property="og:site_name" content="沈阳的博客">
-<meta property="og:description" content="typeof关键字当需要判断变量是否是number, string, boolean, function, undefined, json类型时，可以使用typeof进行判断。其他变量是判断不出类型的，包括null。还有，typeof是区分不出array和json类型的。因为使用typeof这个变量时，array和json类型输出的都是object。 instanceofnum, str和bool">
-<meta property="og:updated_time" content="2017-06-01T01:27:06.988Z">
+<meta property="og:description" content="在JavaScript中,想要判断某个对象值属于哪种内置类型,最靠谱的做法就是通过Object.prototype.toString方法.12var arr = [];console.log(Object.prototype.toString.call(arr))  //&amp;quot;[object Array]&amp;quot; 在ES3中,Object.prototype.toString方法的规范如">
+<meta property="og:updated_time" content="2017-06-01T02:09:07.877Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="判断对象类型的四种方法">
-<meta name="twitter:description" content="typeof关键字当需要判断变量是否是number, string, boolean, function, undefined, json类型时，可以使用typeof进行判断。其他变量是判断不出类型的，包括null。还有，typeof是区分不出array和json类型的。因为使用typeof这个变量时，array和json类型输出的都是object。 instanceofnum, str和bool">
+<meta name="twitter:title" content="JavaScript:Object.prototype.toString方法的原理">
+<meta name="twitter:description" content="在JavaScript中,想要判断某个对象值属于哪种内置类型,最靠谱的做法就是通过Object.prototype.toString方法.12var arr = [];console.log(Object.prototype.toString.call(arr))  //&amp;quot;[object Array]&amp;quot; 在ES3中,Object.prototype.toString方法的规范如">
 
 
 
@@ -124,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2015/06/30/判断对象类型的四种方法/"/>
+  <link rel="canonical" href="http://yoursite.com/2015/05/31/JavaScript-Object-prototype-toString方法的原理/"/>
 
 
 
 
 
-  <title> 判断对象类型的四种方法 | 沈阳的博客 </title>
+  <title> JavaScript:Object.prototype.toString方法的原理 | 沈阳的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -249,7 +249,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/06/30/判断对象类型的四种方法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/05/31/JavaScript-Object-prototype-toString方法的原理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="沈阳">
@@ -270,7 +270,7 @@
             
             
               
-                判断对象类型的四种方法
+                JavaScript:Object.prototype.toString方法的原理
               
             
           </h1>
@@ -285,8 +285,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-06-30T08:59:42+08:00">
-                2015-06-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-05-31T21:02:28+08:00">
+                2015-05-31
               </time>
             
 
@@ -343,10 +343,30 @@
       
 
       
-        <h1 id="typeof关键字"><a href="#typeof关键字" class="headerlink" title="typeof关键字"></a>typeof关键字</h1><p>当需要判断变量是否是number, string, boolean, function, undefined, json类型时，可以使用typeof进行判断。其他变量是判断不出类型的，包括null。<br>还有，typeof是区分不出array和json类型的。因为使用typeof这个变量时，array和json类型输出的都是object。</p>
-<h1 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h1><p>num, str和bool直接量无法判断类型，必须用构造函数创建出对象才能判断</p>
-<h1 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h1><p>除了undefined和null，其他类型的变量均能使用constructor判断出类型。<br>不过使用constructor也不是保险的，因为constructor属性是可以被修改的，会导致检测出的结果不正确。由于不同框架之间的对象，他们的原型是不同的，所以在一个框架中去检测两一个框架中的对象会失败。</p>
-<h1 id="Object-prototype-toString-call"><a href="#Object-prototype-toString-call" class="headerlink" title="Object.prototype.toString.call();"></a>Object.prototype.toString.call();</h1><p>目前JS中最为精确的检测对象类型方法</p>
+        <p>在JavaScript中,想要判断某个对象值属于哪种内置类型,最靠谱的做法就是通过Object.prototype.toString方法.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var arr = [];</div><div class="line">console.log(Object.prototype.toString.call(arr))  //&quot;[object Array]&quot;</div></pre></td></tr></table></figure></p>
+<h2 id="在ES3中-Object-prototype-toString方法的规范如下"><a href="#在ES3中-Object-prototype-toString方法的规范如下" class="headerlink" title="在ES3中,Object.prototype.toString方法的规范如下:"></a>在ES3中,Object.prototype.toString方法的规范如下:</h2><ul>
+<li><p>15.2.4.2 Object.prototype.toString()</p>
+</li>
+<li><p>在toString方法被调用时,会执行下面的操作步骤:</p>
+<ol>
+<li><p>获取this对象的[[Class]]属性的值.</p>
+</li>
+<li><p>计算出三个字符串”[object “, 第一步的操作结果Result(1), 以及 “]”连接后的新字符串.</p>
+</li>
+<li><p>返回第二步的操作结果Result(2)</p>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="Class-是一个内部属性-所有的对象-原生对象和宿主对象-都拥有该属性-在规范中-Class-是这么定义的"><a href="#Class-是一个内部属性-所有的对象-原生对象和宿主对象-都拥有该属性-在规范中-Class-是这么定义的" class="headerlink" title="[[Class]]是一个内部属性,所有的对象(原生对象和宿主对象)都拥有该属性.在规范中,[[Class]]是这么定义的"></a>[[Class]]是一个内部属性,所有的对象(原生对象和宿主对象)都拥有该属性.在规范中,[[Class]]是这么定义的</h2><ul>
+<li>内部属性    描述</li>
+<li>[[Class]]     一个字符串值,表明了该对象的类型.</li>
+</ul>
+<blockquote>
+<p>然后给了一段解释:<br>  所有内置对象的[[Class]]属性的值是由本规范定义的.所<br>有宿主对象的[[Class]]属性的值可以是任意值,甚至可以是内置&gt;对象使用过的[[Class]]属性的值.[[Class]]属性的值可以用来&gt;判断一个原生对象属于哪种内置类型.需要注意的是,除了通过<br>Object.prototype.toString方法之外,本规范没有提供任何其&gt; 他方式来让程序访问该属性的值(查看 15.2.4.2).</p>
+<p>也就是说,把Object.prototype.toString方法返回的字符串,<br>去掉前面固定的”[object “和后面固定的”]”,就是内部属性<br>[[class]]的值,也就达到了判断对象类型的目的.jQuery中的工<br>具方法$.type(),就是干这个的.</p>
+<p>在ES3中,规范文档并没有总结出[[class]]内部属性一共有几<br>种,不过我们可以自己统计一下,原生对象的[[class]]内部属性&gt;的值一共有10种.分别是:”Array”, “Boolean”, “Date”, &gt;”Error”, “Function”, “Math”, “Number”, “Object”, &gt;”RegExp”, “String”.</p>
+</blockquote>
 
       
     </div>
@@ -383,15 +403,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/06/28/了解eval-方法/" rel="next" title="了解eval()方法">
-                <i class="fa fa-chevron-left"></i> 了解eval()方法
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/06/24/搭建Blog/" rel="prev" title="hexo+github搭建Blog">
+                hexo+github搭建Blog <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -511,7 +531,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#typeof关键字"><span class="nav-number">1.</span> <span class="nav-text">typeof关键字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#instanceof"><span class="nav-number">2.</span> <span class="nav-text">instanceof</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#constructor-NaN"><span class="nav-number">3.</span> <span class="nav-text">constructor</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Object-prototype-toString-call"><span class="nav-number">4.</span> <span class="nav-text">Object.prototype.toString.call();</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#在ES3中-Object-prototype-toString方法的规范如下"><span class="nav-number">1.</span> <span class="nav-text">在ES3中,Object.prototype.toString方法的规范如下:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Class-是一个内部属性-所有的对象-原生对象和宿主对象-都拥有该属性-在规范中-Class-是这么定义的"><span class="nav-number">2.</span> <span class="nav-text">[[Class]]是一个内部属性,所有的对象(原生对象和宿主对象)都拥有该属性.在规范中,[[Class]]是这么定义的</span></a></li></ol></div>
             
 
           </div>
