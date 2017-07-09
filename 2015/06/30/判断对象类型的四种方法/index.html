@@ -87,16 +87,16 @@
 
 
 
-<meta name="description" content="typeof关键字当需要判断变量是否是number, string, boolean, function, undefined, json类型时，可以使用typeof进行判断。其他变量是判断不出类型的，包括null。还有，typeof是区分不出array和json类型的。因为使用typeof这个变量时，array和json类型输出的都是object。 instanceofnum, str和bool">
+<meta name="description" content="JS的六大数据类型number、string、object、Boolean、null、undefined typeof关键字当需要判断变量是否是number, string, boolean, function, undefined类型时，可以使用typeof进行判断。其他变量是判断不出类型的，包括null。 instanceof对象 instanceof 构造函数用来检测对象的原型链上是否存在这">
 <meta property="og:type" content="article">
 <meta property="og:title" content="判断对象类型的四种方法">
 <meta property="og:url" content="http://yoursite.com/2015/06/30/判断对象类型的四种方法/index.html">
 <meta property="og:site_name" content="沈阳的博客">
-<meta property="og:description" content="typeof关键字当需要判断变量是否是number, string, boolean, function, undefined, json类型时，可以使用typeof进行判断。其他变量是判断不出类型的，包括null。还有，typeof是区分不出array和json类型的。因为使用typeof这个变量时，array和json类型输出的都是object。 instanceofnum, str和bool">
-<meta property="og:updated_time" content="2017-06-01T01:27:06.988Z">
+<meta property="og:description" content="JS的六大数据类型number、string、object、Boolean、null、undefined typeof关键字当需要判断变量是否是number, string, boolean, function, undefined类型时，可以使用typeof进行判断。其他变量是判断不出类型的，包括null。 instanceof对象 instanceof 构造函数用来检测对象的原型链上是否存在这">
+<meta property="og:updated_time" content="2017-07-09T10:55:38.239Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="判断对象类型的四种方法">
-<meta name="twitter:description" content="typeof关键字当需要判断变量是否是number, string, boolean, function, undefined, json类型时，可以使用typeof进行判断。其他变量是判断不出类型的，包括null。还有，typeof是区分不出array和json类型的。因为使用typeof这个变量时，array和json类型输出的都是object。 instanceofnum, str和bool">
+<meta name="twitter:description" content="JS的六大数据类型number、string、object、Boolean、null、undefined typeof关键字当需要判断变量是否是number, string, boolean, function, undefined类型时，可以使用typeof进行判断。其他变量是判断不出类型的，包括null。 instanceof对象 instanceof 构造函数用来检测对象的原型链上是否存在这">
 
 
 
@@ -343,9 +343,11 @@
       
 
       
-        <h1 id="typeof关键字"><a href="#typeof关键字" class="headerlink" title="typeof关键字"></a>typeof关键字</h1><p>当需要判断变量是否是number, string, boolean, function, undefined, json类型时，可以使用typeof进行判断。其他变量是判断不出类型的，包括null。<br>还有，typeof是区分不出array和json类型的。因为使用typeof这个变量时，array和json类型输出的都是object。</p>
-<h1 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h1><p>num, str和bool直接量无法判断类型，必须用构造函数创建出对象才能判断</p>
-<h1 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h1><p>除了undefined和null，其他类型的变量均能使用constructor判断出类型。<br>不过使用constructor也不是保险的，因为constructor属性是可以被修改的，会导致检测出的结果不正确。由于不同框架之间的对象，他们的原型是不同的，所以在一个框架中去检测两一个框架中的对象会失败。</p>
+        <h1 id="JS的六大数据类型"><a href="#JS的六大数据类型" class="headerlink" title="JS的六大数据类型"></a>JS的六大数据类型</h1><p>number、string、object、Boolean、null、undefined</p>
+<h1 id="typeof关键字"><a href="#typeof关键字" class="headerlink" title="typeof关键字"></a>typeof关键字</h1><p>当需要判断变量是否是number, string, boolean, function, undefined类型时，可以使用typeof进行判断。其他变量是判断不出类型的，包括null。</p>
+<h1 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h1><p>对象 instanceof 构造函数<br>用来检测对象的原型链上是否存在这个构造函数</p>
+<p>num, str和bool直接量无法判断类型，必须用构造函数创建出对象才能判断</p>
+<h1 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h1><p>对象.constructor返回对象的构造函数<br>除了undefined和null，其他类型的变量均能使用constructor判断出类型。<br>不过使用constructor也不是保险的，因为constructor属性是可以被修改的，会导致检测出的结果不正确。由于不同框架之间的对象，他们的原型是不同的，所以在一个框架中去检测两一个框架中的对象会失败。</p>
 <h1 id="Object-prototype-toString-call"><a href="#Object-prototype-toString-call" class="headerlink" title="Object.prototype.toString.call();"></a>Object.prototype.toString.call();</h1><p>目前JS中最为精确的检测对象类型方法</p>
 
       
@@ -467,7 +469,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -515,7 +517,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#typeof关键字"><span class="nav-number">1.</span> <span class="nav-text">typeof关键字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#instanceof"><span class="nav-number">2.</span> <span class="nav-text">instanceof</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#constructor-NaN"><span class="nav-number">3.</span> <span class="nav-text">constructor</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Object-prototype-toString-call"><span class="nav-number">4.</span> <span class="nav-text">Object.prototype.toString.call();</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JS的六大数据类型"><span class="nav-number">1.</span> <span class="nav-text">JS的六大数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#typeof关键字"><span class="nav-number">2.</span> <span class="nav-text">typeof关键字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#instanceof"><span class="nav-number">3.</span> <span class="nav-text">instanceof</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#constructor-NaN"><span class="nav-number">4.</span> <span class="nav-text">constructor</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Object-prototype-toString-call"><span class="nav-number">5.</span> <span class="nav-text">Object.prototype.toString.call();</span></a></li></ol></div>
             
 
           </div>
