@@ -395,6 +395,161 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/09/继承/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="沈阳">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="沈阳的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/09/继承/" itemprop="url">
+                  继承
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-09T21:43:30+08:00">
+                2017-07-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端-JS/" itemprop="url" rel="index">
+                    <span itemprop="name">前端-JS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="原型继承"><a href="#原型继承" class="headerlink" title="原型继承"></a>原型继承</h1><p>将子类的原型指向父类对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function Super()&#123;</div><div class="line">    this.val = 1;</div><div class="line">    this.arr = [1];</div><div class="line">&#125;</div><div class="line">function Sub()&#123;</div><div class="line">    // ...</div><div class="line">&#125;</div><div class="line">Sub.prototype = new Super();</div></pre></td></tr></table></figure></p>
+<p> 原型继承存在的问题：</p>
+<ul>
+<li>当父类的构造函数中存在引用类型的属性时，子类的所有对象会共享这个属性</li>
+<li>在创建子类实例时，无法向父类构造函数传参</li>
+</ul>
+<h1 id="借用构造函数继承"><a href="#借用构造函数继承" class="headerlink" title="借用构造函数继承"></a>借用构造函数继承</h1><p>用子类调用父类的构造函数，等于是把父类的实例属性复制了一份给子类实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function Super(val)&#123;</div><div class="line">    this.val = val;</div><div class="line">    this.arr = [1];</div><div class="line"> </div><div class="line">    this.fun = function()&#123;</div><div class="line">        // ...</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">function Sub(val)&#123;</div><div class="line">    Super.call(this, val); </div><div class="line">    // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>借用构造函数继承解决了属性共享和无法向父类构造函数传参的问题<br>借用构造函数继承存在的问题：</p>
+<ul>
+<li>由于函数都在构造函数中定义，所以无法实现函数复用</li>
+</ul>
+<h1 id="组合式继承"><a href="#组合式继承" class="headerlink" title="组合式继承"></a>组合式继承</h1><p>将两种继承的优势组合在一起，使用原型链实现对原型属性和方法的继承，通过借用构造函数实现对实例属性的继承。这样，既通过在原型上定义方法实现了函数复用，又能保证每个实例都有它自己的属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function Super(name) &#123;</div><div class="line">    this.name = name;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Super.prototype.play = function() &#123;</div><div class="line">    console.log(this.name);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">function Sub(name, age) &#123;</div><div class="line">    Parent.call(this, name);</div><div class="line">    this.age = age;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Sub.prototype = new Super();</div></pre></td></tr></table></figure></p>
+<h1 id="原型继承的快速实现"><a href="#原型继承的快速实现" class="headerlink" title="原型继承的快速实现"></a>原型继承的快速实现</h1><p>ECMAScript 5 通过新增 Object.create()方法规范化了原型式继承。这个方法接收两个参数：一<br>个用作新对象原型的对象和（可选的）一个为新对象定义额外属性的对象<br>//该方法的兼容性写法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function myCreate(obj)&#123;</div><div class="line">	if(Object.create)&#123;</div><div class="line">		return Object.create(obj);</div><div class="line">	&#125;else&#123;</div><div class="line">		function F()&#123;&#125;</div><div class="line">		F.prototype = obj;</div><div class="line">		return new F();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/07/了解JSON/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -892,6 +1047,149 @@ window.attachEvent(&quot;onload&quot;, function () {
  </script>
 </li>
 </ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/09/判断一个字符串中出现次数最多的字符并统计出现次数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="沈阳">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="沈阳的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/07/09/判断一个字符串中出现次数最多的字符并统计出现次数/" itemprop="url">
+                  判断一个字符串中出现次数最多的字符并统计出现次数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-09T20:28:41+08:00">
+                2016-07-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端-JS/" itemprop="url" rel="index">
+                    <span itemprop="name">前端-JS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">var str=&quot;sadhjkasdhkjhdfkgjhagsdfgjas&quot;;</div><div class="line">//利用对象属性唯一性</div><div class="line">  var o = &#123;&#125;;</div><div class="line">  for(var i = 0;i &lt; str.length;i++)&#123;</div><div class="line">      var char = str.charAt(i);</div><div class="line">      if(o[char])&#123;</div><div class="line">          o[char]++;</div><div class="line">      &#125;else&#123;</div><div class="line">          o[char] = 1;</div><div class="line">      &#125;</div><div class="line">  &#125;</div><div class="line">  //将出现的最多次数筛选出来</div><div class="line">  var max = 0;</div><div class="line">  for (var key in o) &#123;</div><div class="line">      if(o[key] &gt; max)&#123;</div><div class="line">          max = o[key];</div><div class="line">      &#125;</div><div class="line">  &#125;</div><div class="line">  //用出现的次数把这个字符找出来</div><div class="line">  for(var key in o)&#123;</div><div class="line">      if(o[key] == max)&#123;</div><div class="line">          console.log(&quot;出现最多的字符是&quot;+key+&apos;次数&apos;+o[key]);</div><div class="line">      &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -1576,305 +1874,6 @@ window.attachEvent(&quot;onload&quot;, function () {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/05/变量提升/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="沈阳">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="沈阳的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/05/变量提升/" itemprop="url">
-                  变量提升
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-05T14:37:34+08:00">
-                2016-06-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端-JS/" itemprop="url" rel="index">
-                    <span itemprop="name">前端-JS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="JS执行分两个阶段"><a href="#JS执行分两个阶段" class="headerlink" title="JS执行分两个阶段"></a>JS执行分两个阶段</h3><ol>
-<li>预解析阶段</li>
-<li>执行阶段<h3 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h3>在js代码的预解析阶段，系统会将所有的变量声明以及函数声明提升到其所在的作用域的最顶上，这个过程就是变量提升<h3 id="变量提升的特殊情况"><a href="#变量提升的特殊情况" class="headerlink" title="变量提升的特殊情况"></a>变量提升的特殊情况</h3></li>
-<li>函数同名<br> 全部提升，后面的会覆盖前面的</li>
-<li><p>函数和变量同名<br> 只提升函数，忽略掉变量的声明</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">  console.log( a);</div><div class="line">var a = 123;</div><div class="line">function a()&#123;</div><div class="line">	console.log(&quot;我是一个函数&quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">//提升后的代码</div><div class="line">function a()&#123;</div><div class="line">	console.log(&quot;我是一个函数&quot;);</div><div class="line">&#125;</div><div class="line">console.log(a);</div><div class="line">a = 123;</div></pre></td></tr></table></figure>
-</li>
-<li><p>变量的提升是分作用域的</p>
-</li>
-<li>变量的提升是分段（script标签）<br> 当前script标签中的函数和变量声明不会被提升到上一个标签中，只会提升到当前标签中</li>
-<li>条件式函数声明（在条件语句中声明的函数）<br> 将其当做函数表达式来处理即可<br> 只会提升函数名，不会提升函数体！</li>
-<li>函数形参在变量提升中表现<br> 函数的形参的声明以及赋值过程优先于变量提升，并且不参与变量提升 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">   function test(a)&#123;</div><div class="line">	var a = 100;</div><div class="line">	console.log(typeof a);</div><div class="line"> 	function a()&#123;&#125;</div><div class="line"> &#125;</div><div class="line"></div><div class="line">//提升后的代码</div><div class="line"> function test(a)&#123;</div><div class="line"> 	//下面的var a = 100, 会在变量提升之前就做完！</div><div class="line"> 	var a = 100;</div><div class="line"></div><div class="line"> 	//函数提升就提升在上面的形参声明以及赋值之后！</div><div class="line"> 	function a()&#123;&#125;</div><div class="line"> 	console.log(typeof a);</div><div class="line"> &#125;</div></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/07/09/伪数组转数组/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="沈阳">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="沈阳的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/09/伪数组转数组/" itemprop="url">
-                  伪数组转数组
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-07-09T19:44:35+08:00">
-                2015-07-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端-JS/" itemprop="url" rel="index">
-                    <span itemprop="name">前端-JS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="方法一、-声明一个空数组，通过遍历伪数组把它们重新添加到新的数组中"><a href="#方法一、-声明一个空数组，通过遍历伪数组把它们重新添加到新的数组中" class="headerlink" title="方法一、 声明一个空数组，通过遍历伪数组把它们重新添加到新的数组中"></a>方法一、 声明一个空数组，通过遍历伪数组把它们重新添加到新的数组中</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">1 var aLi = document.querySelectorAll(&apos;li&apos;);</div><div class="line">2     var arr = [];</div><div class="line">3     for (var i = 0; i &lt; aLi.length; i++) &#123;</div><div class="line">4         arr[arr.length] = aLi[i]</div><div class="line">5     &#125;</div></pre></td></tr></table></figure>
-<h2 id="方法二、使用数组的slice-方法-它返回的是数组，使用call或者apply指向伪数组"><a href="#方法二、使用数组的slice-方法-它返回的是数组，使用call或者apply指向伪数组" class="headerlink" title="方法二、使用数组的slice()方法 它返回的是数组，使用call或者apply指向伪数组"></a>方法二、使用数组的slice()方法 它返回的是数组，使用call或者apply指向伪数组</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">1 var arr = Array.prototype.slice.call(aLi);</div></pre></td></tr></table></figure>
-<h2 id="方法三、ES6中数组的新方法-from"><a href="#方法三、ES6中数组的新方法-from" class="headerlink" title="方法三、ES6中数组的新方法 from()"></a>方法三、ES6中数组的新方法 from()</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">1 function test()&#123;</div><div class="line">2     var arg = Array.from(arguments);</div><div class="line">3     arg.push(5);</div><div class="line">4     console.log(arg);//1,2,3,4,5</div><div class="line">5 </div><div class="line">6 &#125;</div><div class="line">7 test(1,2,3,4);</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1924,7 +1923,7 @@ window.attachEvent(&quot;onload&quot;, function () {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

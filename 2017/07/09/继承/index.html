@@ -87,16 +87,16 @@
 
 
 
-<meta name="description" content="方法一、 声明一个空数组，通过遍历伪数组把它们重新添加到新的数组中123451 var aLi = document.querySelectorAll(&amp;apos;li&amp;apos;);2     var arr = [];3     for (var i = 0; i &amp;lt; aLi.length; i++) &amp;#123;4         arr[arr.length] = aLi[i]5">
+<meta name="description" content="原型继承将子类的原型指向父类对象12345678function Super()&amp;#123;    this.val = 1;    this.arr = [1];&amp;#125;function Sub()&amp;#123;    // ...&amp;#125;Sub.prototype = new Super();  原型继承存在的问题：  当父类的构造函数中存在引用类型的属性时，子类的所有对象会共享这个属性">
 <meta property="og:type" content="article">
-<meta property="og:title" content="伪数组转数组">
-<meta property="og:url" content="http://yoursite.com/2015/07/09/伪数组转数组/index.html">
+<meta property="og:title" content="继承">
+<meta property="og:url" content="http://yoursite.com/2017/07/09/继承/index.html">
 <meta property="og:site_name" content="沈阳的博客">
-<meta property="og:description" content="方法一、 声明一个空数组，通过遍历伪数组把它们重新添加到新的数组中123451 var aLi = document.querySelectorAll(&amp;apos;li&amp;apos;);2     var arr = [];3     for (var i = 0; i &amp;lt; aLi.length; i++) &amp;#123;4         arr[arr.length] = aLi[i]5">
-<meta property="og:updated_time" content="2017-07-09T11:47:52.515Z">
+<meta property="og:description" content="原型继承将子类的原型指向父类对象12345678function Super()&amp;#123;    this.val = 1;    this.arr = [1];&amp;#125;function Sub()&amp;#123;    // ...&amp;#125;Sub.prototype = new Super();  原型继承存在的问题：  当父类的构造函数中存在引用类型的属性时，子类的所有对象会共享这个属性">
+<meta property="og:updated_time" content="2017-07-10T01:23:51.070Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="伪数组转数组">
-<meta name="twitter:description" content="方法一、 声明一个空数组，通过遍历伪数组把它们重新添加到新的数组中123451 var aLi = document.querySelectorAll(&amp;apos;li&amp;apos;);2     var arr = [];3     for (var i = 0; i &amp;lt; aLi.length; i++) &amp;#123;4         arr[arr.length] = aLi[i]5">
+<meta name="twitter:title" content="继承">
+<meta name="twitter:description" content="原型继承将子类的原型指向父类对象12345678function Super()&amp;#123;    this.val = 1;    this.arr = [1];&amp;#125;function Sub()&amp;#123;    // ...&amp;#125;Sub.prototype = new Super();  原型继承存在的问题：  当父类的构造函数中存在引用类型的属性时，子类的所有对象会共享这个属性">
 
 
 
@@ -124,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2015/07/09/伪数组转数组/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/07/09/继承/"/>
 
 
 
 
 
-  <title> 伪数组转数组 | 沈阳的博客 </title>
+  <title> 继承 | 沈阳的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -249,7 +249,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/07/09/伪数组转数组/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/09/继承/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="沈阳">
@@ -270,7 +270,7 @@
             
             
               
-                伪数组转数组
+                继承
               
             
           </h1>
@@ -285,8 +285,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-07-09T19:44:35+08:00">
-                2015-07-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-09T21:43:30+08:00">
+                2017-07-09
               </time>
             
 
@@ -343,9 +343,20 @@
       
 
       
-        <h2 id="方法一、-声明一个空数组，通过遍历伪数组把它们重新添加到新的数组中"><a href="#方法一、-声明一个空数组，通过遍历伪数组把它们重新添加到新的数组中" class="headerlink" title="方法一、 声明一个空数组，通过遍历伪数组把它们重新添加到新的数组中"></a>方法一、 声明一个空数组，通过遍历伪数组把它们重新添加到新的数组中</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">1 var aLi = document.querySelectorAll(&apos;li&apos;);</div><div class="line">2     var arr = [];</div><div class="line">3     for (var i = 0; i &lt; aLi.length; i++) &#123;</div><div class="line">4         arr[arr.length] = aLi[i]</div><div class="line">5     &#125;</div></pre></td></tr></table></figure>
-<h2 id="方法二、使用数组的slice-方法-它返回的是数组，使用call或者apply指向伪数组"><a href="#方法二、使用数组的slice-方法-它返回的是数组，使用call或者apply指向伪数组" class="headerlink" title="方法二、使用数组的slice()方法 它返回的是数组，使用call或者apply指向伪数组"></a>方法二、使用数组的slice()方法 它返回的是数组，使用call或者apply指向伪数组</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">1 var arr = Array.prototype.slice.call(aLi);</div></pre></td></tr></table></figure>
-<h2 id="方法三、ES6中数组的新方法-from"><a href="#方法三、ES6中数组的新方法-from" class="headerlink" title="方法三、ES6中数组的新方法 from()"></a>方法三、ES6中数组的新方法 from()</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">1 function test()&#123;</div><div class="line">2     var arg = Array.from(arguments);</div><div class="line">3     arg.push(5);</div><div class="line">4     console.log(arg);//1,2,3,4,5</div><div class="line">5 </div><div class="line">6 &#125;</div><div class="line">7 test(1,2,3,4);</div></pre></td></tr></table></figure>
+        <h1 id="原型继承"><a href="#原型继承" class="headerlink" title="原型继承"></a>原型继承</h1><p>将子类的原型指向父类对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function Super()&#123;</div><div class="line">    this.val = 1;</div><div class="line">    this.arr = [1];</div><div class="line">&#125;</div><div class="line">function Sub()&#123;</div><div class="line">    // ...</div><div class="line">&#125;</div><div class="line">Sub.prototype = new Super();</div></pre></td></tr></table></figure></p>
+<p> 原型继承存在的问题：</p>
+<ul>
+<li>当父类的构造函数中存在引用类型的属性时，子类的所有对象会共享这个属性</li>
+<li>在创建子类实例时，无法向父类构造函数传参</li>
+</ul>
+<h1 id="借用构造函数继承"><a href="#借用构造函数继承" class="headerlink" title="借用构造函数继承"></a>借用构造函数继承</h1><p>用子类调用父类的构造函数，等于是把父类的实例属性复制了一份给子类实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function Super(val)&#123;</div><div class="line">    this.val = val;</div><div class="line">    this.arr = [1];</div><div class="line"> </div><div class="line">    this.fun = function()&#123;</div><div class="line">        // ...</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">function Sub(val)&#123;</div><div class="line">    Super.call(this, val); </div><div class="line">    // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>借用构造函数继承解决了属性共享和无法向父类构造函数传参的问题<br>借用构造函数继承存在的问题：</p>
+<ul>
+<li>由于函数都在构造函数中定义，所以无法实现函数复用</li>
+</ul>
+<h1 id="组合式继承"><a href="#组合式继承" class="headerlink" title="组合式继承"></a>组合式继承</h1><p>将两种继承的优势组合在一起，使用原型链实现对原型属性和方法的继承，通过借用构造函数实现对实例属性的继承。这样，既通过在原型上定义方法实现了函数复用，又能保证每个实例都有它自己的属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function Super(name) &#123;</div><div class="line">    this.name = name;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Super.prototype.play = function() &#123;</div><div class="line">    console.log(this.name);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">function Sub(name, age) &#123;</div><div class="line">    Parent.call(this, name);</div><div class="line">    this.age = age;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Sub.prototype = new Super();</div></pre></td></tr></table></figure></p>
+<h1 id="原型继承的快速实现"><a href="#原型继承的快速实现" class="headerlink" title="原型继承的快速实现"></a>原型继承的快速实现</h1><p>ECMAScript 5 通过新增 Object.create()方法规范化了原型式继承。这个方法接收两个参数：一<br>个用作新对象原型的对象和（可选的）一个为新对象定义额外属性的对象<br>//该方法的兼容性写法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function myCreate(obj)&#123;</div><div class="line">	if(Object.create)&#123;</div><div class="line">		return Object.create(obj);</div><div class="line">	&#125;else&#123;</div><div class="line">		function F()&#123;&#125;</div><div class="line">		F.prototype = obj;</div><div class="line">		return new F();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
       
     </div>
 
@@ -381,8 +392,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/07/09/原型链/" rel="next" title="原型链">
-                <i class="fa fa-chevron-left"></i> 原型链
+              <a href="/2017/07/07/了解JSON/" rel="next" title="了解JSON">
+                <i class="fa fa-chevron-left"></i> 了解JSON
               </a>
             
           </div>
@@ -391,8 +402,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/06/05/变量提升/" rel="prev" title="变量提升">
-                变量提升 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/07/22/new关键字做了什么/" rel="prev" title="new关键字做了什么">
+                new关键字做了什么 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -513,7 +524,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法一、-声明一个空数组，通过遍历伪数组把它们重新添加到新的数组中"><span class="nav-number">1.</span> <span class="nav-text">方法一、 声明一个空数组，通过遍历伪数组把它们重新添加到新的数组中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法二、使用数组的slice-方法-它返回的是数组，使用call或者apply指向伪数组"><span class="nav-number">2.</span> <span class="nav-text">方法二、使用数组的slice()方法 它返回的是数组，使用call或者apply指向伪数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法三、ES6中数组的新方法-from"><span class="nav-number">3.</span> <span class="nav-text">方法三、ES6中数组的新方法 from()</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原型继承"><span class="nav-number">1.</span> <span class="nav-text">原型继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#借用构造函数继承"><span class="nav-number">2.</span> <span class="nav-text">借用构造函数继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组合式继承"><span class="nav-number">3.</span> <span class="nav-text">组合式继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原型继承的快速实现"><span class="nav-number">4.</span> <span class="nav-text">原型继承的快速实现</span></a></li></ol></div>
             
 
           </div>
